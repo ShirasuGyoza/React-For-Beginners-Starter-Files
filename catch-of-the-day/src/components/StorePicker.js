@@ -8,12 +8,14 @@ class StorePicker extends React.Component {
   //   this.goToStore = this.goToStore.bind(this); // thisをgoToStoreにバインド
   // }
 
-  myInput = React.createRef;
+  myInput = React.createRef();
   goToStore = event => { // goToStoreをarrow functionにすることでthisがバインドされる
     // submitイベントでリロードされるのを切る
     event.preventDefault(); 
     // get the text from input
-    console.log(this.myInput);
+    const storeName = this.myInput.current.value;
+    // change the page to /store/whatever-they-enterd
+    this.props.history.push(`/store/${storeName}/`);
   }
   render() {
     return (
@@ -21,8 +23,8 @@ class StorePicker extends React.Component {
         <form className="store-selector" onSubmit={this.goToStore}>
           <h2>Please Enter a Store</h2>
           <input 
-            ref={this.myInput}
             type="text" 
+            ref={this.myInput}
             required 
             placeholder="Store Name" 
             defaultValue={getFunName()} 
