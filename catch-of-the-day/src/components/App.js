@@ -4,6 +4,21 @@ import Order from './Order';
 import Inventory from './Inventory';
 
 class App extends React.Component {
+  state = {
+    fishes: {}, // 空のobjectを用意しておく。ここにfish1, fish2が格納されていく
+    order: {}
+  };
+  // stateを更新するfunction
+  addFish = fish => {
+    // 1. take the copy of existing state
+    const fishes = {...this.state.fishes};
+    // 2. add our new fish to that fishes variable
+    fishes[`fish${Date.now()}`] = fish;
+    // 3. set the new fish object to the state
+    this.setState({
+      fishes // = fishes: fishes
+    });
+  };
   render() {
     return (
        <div className="catch-of-the-day">
@@ -11,7 +26,7 @@ class App extends React.Component {
            <Header tagline="Fresh Seafood Market" />
          </div>
          <Order />
-         <Inventory />
+         <Inventory addFish={this.addFish} />
        </div>
     )
   }
