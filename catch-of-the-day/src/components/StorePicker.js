@@ -13,7 +13,7 @@ class StorePicker extends React.Component {
     // submitイベントでリロードされるのを切る
     event.preventDefault(); 
     // get the text from input
-    const storeName = this.myInput.current.value;
+    const storeName = this.myInput.current.value; // currentはReactの値で、valueはJSの値
     // change the page to /store/whatever-they-enterd
     this.props.history.push(`/store/${storeName}/`);
   }
